@@ -1,5 +1,6 @@
 package com.ls.dareman
 
+import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -21,6 +22,8 @@ class DashFragment: DMFragment() {
         val buttonOne = activity!!.findViewById(com.ls.dareman.R.id.menu_one) as Button
         buttonOne.setOnClickListener {
             Toast.makeText(activity, "hoge!", Toast.LENGTH_SHORT).show()
+            val intent = Intent(activity, SplashActivity::class.java)
+            startActivity(intent)
         }
 
         val buttonTwo = activity!!.findViewById(com.ls.dareman.R.id.menu_two) as Button
