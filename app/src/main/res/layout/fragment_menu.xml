@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+    <ImageView
+            android:id="@+id/title_img"
+            android:layout_width="match_parent"
+            android:layout_height="300dp"/>
+    <Button
+            android:id="@+id/menu_one"
+            android:layout_width="match_parent"
+            android:layout_height="100dp"
+            android:layout_below="@+id/title_img"
+            android:layout_margin="5dp"
+            android:gravity="center"
+            android:layout_gravity="center_horizontal"
+            android:onClick="toSplash"
+            android:text="@string/select_site" >
+    </Button>
+    <Button
+            android:id="@+id/menu_two"
+            android:layout_width="match_parent"
+            android:layout_height="100dp"
+            android:layout_below="@+id/menu_one"
+            android:layout_margin="5dp"
+            android:gravity="center"
+            android:layout_gravity="center_horizontal"
+            android:text="@string/comment" >
+    </Button>
+
+</RelativeLayout>

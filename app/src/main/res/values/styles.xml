@@ -1,0 +1,38 @@
+<resources>
+
+    <!-- Base application theme. -->
+    <style name="AppTheme" parent="Theme.AppCompat.Light.NoActionBar">
+        <!-- Customize your theme here. -->
+        <item name="colorPrimary">@color/colorPrimary</item>
+        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
+        <item name="colorAccent">@color/colorAccent</item>
+    </style>
+
+    <style name="Base_AlertDialog" parent="Base.Theme.AppCompat.Light.Dialog">
+
+        <!--not fill for full screen wide if not set-->
+        <item name="windowMinWidthMinor">90%</item>
+
+        <!-- set no title -->
+        <item name="android:windowNoTitle">true</item>
+
+        <!-- set title and body msg color -->
+        <!--<item name="android:textColorPrimary">@color/black</item>-->
+
+        <!-- 在使用v7包的alertDialog中无效，6.0中的app.alertDialog有效，这里是修改顶部标题背景颜色，具体颜色自己定，可以是图片 -->
+        <item name="android:topDark">@color/white</item>
+
+        <!-- entering/ending animation -->
+        <!--<item name="android:windowAnimationStyle">@android:style/Animation.Translucent</item>-->
+
+        <!-- button color -->
+        <item name="colorAccent">@color/app_main_color</item>
+    </style>
+
+    <style name="Banner_Dialog_Theme" parent="Base.Theme.AppCompat.Light.Dialog">
+        <item name="android:windowBackground">@color/transparent</item>
+        <!-- entering/ending animation -->
+        <item name="android:windowAnimationStyle">@android:style/Animation.Translucent</item>
+    </style>
+
+</resources>
