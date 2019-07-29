@@ -58,6 +58,7 @@ public class SplashActivity extends FragmentActivity {
         setChannel();
         initAds();
 
+        // for debug
 //        FirebaseInstanceId.getInstance().getInstanceId().addOnCompleteListener((task) -> {
 //            if (!task.isSuccessful()) {
 //                Log.w("FIREBASE", "getInstanceId failed.", task.getException());
@@ -69,9 +70,9 @@ public class SplashActivity extends FragmentActivity {
 //        });
 
         onDebugSelector();
-
         getDynamicLinks();
 
+        // load Admob
         mAdView = findViewById(R.id.adView);
         AdRequest adRequest = new AdRequest.Builder().build();
         mAdView.loadAd(adRequest);
