@@ -13,6 +13,9 @@ import android.util.Log;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.FragmentActivity;
+import com.google.android.gms.ads.AdRequest;
+import com.google.android.gms.ads.AdView;
+import com.google.android.gms.ads.MobileAds;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.analytics.FirebaseAnalytics;
@@ -23,6 +26,9 @@ import com.google.firebase.iid.FirebaseInstanceId;
 
 public class SplashActivity extends FragmentActivity {
     private FirebaseAnalytics mFirebaseAnalytics;
+    private AdView mAdView;
+    private static final String ADMOB_APP_ID = "ca-app-pub-1668811522927993~1888119014";
+
 
     public static final String[] HOST_URL = {
             "https://dokodemo.world/",
@@ -47,8 +53,10 @@ public class SplashActivity extends FragmentActivity {
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_splash);
         mFirebaseAnalytics = FirebaseAnalytics.getInstance(this);
         setChannel();
+        initAds();
 
 //        FirebaseInstanceId.getInstance().getInstanceId().addOnCompleteListener((task) -> {
 //            if (!task.isSuccessful()) {
@@ -63,6 +71,10 @@ public class SplashActivity extends FragmentActivity {
         onDebugSelector();
 
         getDynamicLinks();
+
+        mAdView = findViewById(R.id.adView);
+        AdRequest adRequest = new AdRequest.Builder().build();
+        mAdView.loadAd(adRequest);
     }
 
     public void onDebugSelector() {
@@ -117,6 +129,10 @@ public class SplashActivity extends FragmentActivity {
             // チャンネルの登録
             manager.createNotificationChannel(channel);
         }
+    }
+
+    private void initAds() {
+        MobileAds.initialize(this, ADMOB_APP_ID);
     }
 
     public void getDynamicLinks() {

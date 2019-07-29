@@ -6,4 +6,7 @@
 
     <string name="select_site">select site</string>
     <string name="comment">Coming soon!</string>
+
+    <string name="ADMOB_APP_ID">ca-app-pub-1668811522927993~1888119014</string>
+    <string name="banner_ad_unit_id">ca-app-pub-1668811522927993/8970254881</string>
 </resources>
