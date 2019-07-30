@@ -19,7 +19,7 @@ class DashFragment: DMFragment() {
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
         super.onCreateView(inflater, container, savedInstanceState)
 
-        val v = inflater.inflate(com.ls.dareman.R.layout.fragment_dashboard, container, false)
+        val v = inflater.inflate(com.ls.dareman.R.layout.fragment_menu, container, false)
         initInterstitialAds()
 
         return v
@@ -50,55 +50,55 @@ class DashFragment: DMFragment() {
             }
         }
 
-        val buttonThree = activity!!.findViewById(com.ls.dareman.R.id.menu_three) as Button
-        buttonThree.setTextSize(TypedValue.COMPLEX_UNIT_PX, 48F)
-        buttonThree.setOnClickListener {
-            Toast.makeText(activity, "Contents preparing...", Toast.LENGTH_SHORT).show()
-
-            if (mInterstitialAd.isLoaded) {
-                mInterstitialAd.show()
-            }
-        }
-
-        val buttonFour = activity!!.findViewById(com.ls.dareman.R.id.menu_four) as Button
-        buttonFour.setTextSize(TypedValue.COMPLEX_UNIT_PX, 48F)
-        buttonFour.setOnClickListener {
-            Toast.makeText(activity, "Contents preparing...", Toast.LENGTH_SHORT).show()
-
-            if (mInterstitialAd.isLoaded) {
-                mInterstitialAd.show()
-            }
-        }
-
-        val buttonFive = activity!!.findViewById(com.ls.dareman.R.id.menu_five) as Button
-        buttonFive.setTextSize(TypedValue.COMPLEX_UNIT_PX, 48F)
-        buttonFive.setOnClickListener {
-            Toast.makeText(activity, "Contents preparing...", Toast.LENGTH_SHORT).show()
-
-            if (mInterstitialAd.isLoaded) {
-                mInterstitialAd.show()
-            }
-        }
-
-        val buttonSix = activity!!.findViewById(com.ls.dareman.R.id.menu_six) as Button
-        buttonSix.setTextSize(TypedValue.COMPLEX_UNIT_PX, 48F)
-        buttonSix.setOnClickListener {
-            Toast.makeText(activity, "Contents preparing...", Toast.LENGTH_SHORT).show()
-
-            if (mInterstitialAd.isLoaded) {
-                mInterstitialAd.show()
-            }
-        }
-
-        val buttonSeven = activity!!.findViewById(com.ls.dareman.R.id.menu_seven) as Button
-        buttonSeven.setTextSize(TypedValue.COMPLEX_UNIT_PX, 48F)
-        buttonSeven.setOnClickListener {
-            Toast.makeText(activity, "Contents preparing...", Toast.LENGTH_SHORT).show()
-
-            if (mInterstitialAd.isLoaded) {
-                mInterstitialAd.show()
-            }
-        }
+//        val buttonThree = activity!!.findViewById(com.ls.dareman.R.id.menu_three) as Button
+//        buttonThree.setTextSize(TypedValue.COMPLEX_UNIT_PX, 48F)
+//        buttonThree.setOnClickListener {
+//            Toast.makeText(activity, "Contents preparing...", Toast.LENGTH_SHORT).show()
+//
+//            if (mInterstitialAd.isLoaded) {
+//                mInterstitialAd.show()
+//            }
+//        }
+//
+//        val buttonFour = activity!!.findViewById(com.ls.dareman.R.id.menu_four) as Button
+//        buttonFour.setTextSize(TypedValue.COMPLEX_UNIT_PX, 48F)
+//        buttonFour.setOnClickListener {
+//            Toast.makeText(activity, "Contents preparing...", Toast.LENGTH_SHORT).show()
+//
+//            if (mInterstitialAd.isLoaded) {
+//                mInterstitialAd.show()
+//            }
+//        }
+//
+//        val buttonFive = activity!!.findViewById(com.ls.dareman.R.id.menu_five) as Button
+//        buttonFive.setTextSize(TypedValue.COMPLEX_UNIT_PX, 48F)
+//        buttonFive.setOnClickListener {
+//            Toast.makeText(activity, "Contents preparing...", Toast.LENGTH_SHORT).show()
+//
+//            if (mInterstitialAd.isLoaded) {
+//                mInterstitialAd.show()
+//            }
+//        }
+//
+//        val buttonSix = activity!!.findViewById(com.ls.dareman.R.id.menu_six) as Button
+//        buttonSix.setTextSize(TypedValue.COMPLEX_UNIT_PX, 48F)
+//        buttonSix.setOnClickListener {
+//            Toast.makeText(activity, "Contents preparing...", Toast.LENGTH_SHORT).show()
+//
+//            if (mInterstitialAd.isLoaded) {
+//                mInterstitialAd.show()
+//            }
+//        }
+//
+//        val buttonSeven = activity!!.findViewById(com.ls.dareman.R.id.menu_seven) as Button
+//        buttonSeven.setTextSize(TypedValue.COMPLEX_UNIT_PX, 48F)
+//        buttonSeven.setOnClickListener {
+//            Toast.makeText(activity, "Contents preparing...", Toast.LENGTH_SHORT).show()
+//
+//            if (mInterstitialAd.isLoaded) {
+//                mInterstitialAd.show()
+//            }
+//        }
     }
 
     private fun initInterstitialAds() {

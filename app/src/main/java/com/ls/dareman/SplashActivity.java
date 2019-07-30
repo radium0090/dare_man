@@ -36,8 +36,8 @@ public class SplashActivity extends FragmentActivity {
             "https://mintj.com/?mdc=991&afguid=tx0icnka6n4i20rfvwa3guaos",
             "https://meru-para.com/?mdc=991&afguid=tlghvwiy7utr2idztdy46fg90",
             "https://mobile.digicafe.jp/r/vAKDTV",
-            "https://st-asap.dokodemo.world/",
-            "https://st-design.dokodemo.world/ja/",
+            "https://dokodemo.world/",
+            "https://dokodemo.world/ja/",
             "https://google.com/"
     };
 
