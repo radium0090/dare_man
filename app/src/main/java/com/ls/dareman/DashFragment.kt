@@ -7,13 +7,22 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
 import android.widget.Toast
+import com.google.android.gms.ads.AdRequest
+import com.google.android.gms.ads.AdView
 
 
 class DashFragment: DMFragment() {
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
         super.onCreateView(inflater, container, savedInstanceState)
-        return inflater.inflate(com.ls.dareman.R.layout.fragment_menu, container, false)
+        val v = inflater.inflate(com.ls.dareman.R.layout.fragment_menu, container, false)
+
+        // load Admob
+//        mAdView = v.findViewById<AdView>(R.id.adView)
+//        val adRequest = AdRequest.Builder().build()
+//        mAdView.loadAd(adRequest)
+
+        return v
     }
 
     override fun onStart() {
