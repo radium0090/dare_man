@@ -1,14 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout
         xmlns:android="http://schemas.android.com/apk/res/android"
+        android:id="@+id/constraintLayout"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
-
-    <!--<WebView-->
-            <!--android:id="@+id/dash_webview"-->
-            <!--android:layout_width="match_parent"-->
-            <!--android:layout_height="match_parent">-->
-    <!--</WebView>-->
 
     <RelativeLayout
             android:layout_width="match_parent"
@@ -18,24 +13,31 @@
         <ImageView
                 android:id="@+id/title_img"
                 android:layout_width="match_parent"
-                android:layout_height="300dp"/>
+                android:layout_height="280dp"
+                android:layout_alignParentTop="true"
+                android:layout_centerHorizontal="true"
+                android:src="@drawable/bgs"
+                android:scaleType="fitXY"
+                android:contentDescription="@string/bg_img"/>
+
         <Button
                 android:id="@+id/menu_one"
                 android:layout_width="match_parent"
                 android:layout_height="100dp"
                 android:layout_below="@+id/title_img"
-                android:layout_margin="5dp"
+                android:layout_margin="10dp"
                 android:gravity="center"
                 android:layout_gravity="center_horizontal"
                 android:onClick="toSplash"
                 android:text="@string/select_site" >
         </Button>
+
         <Button
                 android:id="@+id/menu_two"
                 android:layout_width="match_parent"
                 android:layout_height="100dp"
                 android:layout_below="@+id/menu_one"
-                android:layout_margin="5dp"
+                android:layout_margin="10dp"
                 android:gravity="center"
                 android:layout_gravity="center_horizontal"
                 android:text="@string/comment" >
