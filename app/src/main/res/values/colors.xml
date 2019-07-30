@@ -5,6 +5,24 @@
     <color name="colorAccent">#D81B60</color>
 
     <color name="white">#ffffff</color>
+    <color name="silver_white">#E9E7EF</color>
     <color name="app_main_color">#3F51B5</color>
     <color name="transparent">#00ffffff</color>
+
+    <color name="ho">#FF0000</color>
+    <color name="ch">#FF7D00</color>
+    <color name="hu">#FFFF00</color>
+    <color name="lu">#00FF00</color>
+    <color name="la">#0000FF</color>
+    <color name="di">#00FFFF</color>
+    <color name="zi">#FF00FF</color>
+
+    <color name="tran_ho">#D9FF0000</color>
+    <color name="tran_ch">#D9FF7D00</color>
+    <color name="tran_hu">#D9FFFF00</color>
+    <color name="tran_lu">#D900FF00</color>
+    <color name="tran_la">#D90000FF</color>
+    <color name="tran_di">#D900FFFF</color>
+    <color name="tran_zi">#D9FF00FF</color>
+
 </resources>

@@ -5,8 +5,11 @@ import android.app.Dialog;
 
 import android.content.Context;
 import android.content.DialogInterface;
+import android.view.Gravity;
 import android.view.View;
 import android.widget.ImageButton;
+import android.widget.TextClock;
+import android.widget.TextView;
 import androidx.fragment.app.DialogFragment;
 import androidx.fragment.app.FragmentManager;
 
@@ -77,21 +80,15 @@ public class DialogFragmentHelper {
      */
     private static final String LIST_TAG = TAG + ":list";
     public static DialogFragment listDialog(FragmentManager fragmentManager, final String title, final String[] items, final DialogResultListener<Integer> resultListener, boolean cancelable ){
-        DialogFragmentUtils dialogFragment = DialogFragmentUtils.newInstance(new DialogFragmentUtils.OnCallDialog() {
-            @Override
-            public Dialog getDialog(Context context) {
-                AlertDialog.Builder builder = new AlertDialog.Builder(context, DIALOG_THEME);
-                builder.setTitle(title);
-                builder.setItems(items, new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialog, int which) {
-                        if(resultListener != null){
-                            resultListener.onDataResult(which);
-                        }
-                    }
-                });
-                return builder.create();
-            }
+        DialogFragmentUtils dialogFragment = DialogFragmentUtils.newInstance(context -> {
+            AlertDialog.Builder builder = new AlertDialog.Builder(context, DIALOG_THEME);
+            builder.setTitle(title);
+            builder.setItems(items, (dialog, which) -> {
+                if(resultListener != null){
+                    resultListener.onDataResult(which);
+                }
+            });
+            return builder.create();
         }, cancelable, null);
         dialogFragment.show(fragmentManager, LIST_TAG);
         return null;

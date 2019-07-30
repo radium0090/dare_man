@@ -16,7 +16,7 @@
             android:gravity="center"
             android:layout_gravity="center_horizontal"
             android:onClick="toSplash"
-            android:text="@string/select_site" >
+            android:text="@string/menu_one" >
     </Button>
     <Button
             android:id="@+id/menu_two"
@@ -26,7 +26,7 @@
             android:layout_margin="5dp"
             android:gravity="center"
             android:layout_gravity="center_horizontal"
-            android:text="@string/comment" >
+            android:text="@string/menu_two" >
     </Button>
 
 </RelativeLayout>

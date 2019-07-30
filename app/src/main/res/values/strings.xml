@@ -4,9 +4,21 @@
     <string name="title_dashboard">Dashboard</string>
     <string name="title_notifications">Notifications</string>
 
-    <string name="select_site">select site</string>
-    <string name="comment">Coming soon!</string>
+    <string name="splash_title">Dare Man</string>
+    <string name="splash_sub_title">「出会い」をまとめ・管理</string>
+    <string name="splash_dialog_title">サイトを選択してください：</string>
+
+    <string name="menu_one">サイト選択へ戻る</string>
+    <string name="menu_two">只今準備中。。。</string>
+    <string name="menu_three">只今準備中。。。</string>
+    <string name="menu_four">只今準備中。。。</string>
+    <string name="menu_five">只今準備中。。。</string>
+    <string name="menu_six">只今準備中。。。</string>
+    <string name="menu_seven">只今準備中。。。</string>
+
+    <string name="bg_img">背景画像</string>
 
     <string name="ADMOB_APP_ID">ca-app-pub-1668811522927993~1888119014</string>
     <string name="banner_ad_unit_id">ca-app-pub-1668811522927993/8970254881</string>
+    <string name="interstitial_ad_unit_id">ca-app-pub-1668811522927993/7031089897</string>
 </resources>

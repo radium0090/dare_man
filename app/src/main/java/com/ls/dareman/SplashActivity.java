@@ -5,11 +5,15 @@ import android.app.NotificationChannel;
 import android.app.NotificationManager;
 import android.content.Context;
 import android.content.Intent;
+import android.content.res.ColorStateList;
 import android.graphics.Color;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
+import android.text.TextPaint;
 import android.util.Log;
+import android.view.Gravity;
+import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.FragmentActivity;
@@ -21,33 +25,30 @@ import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.analytics.FirebaseAnalytics;
 import com.google.firebase.dynamiclinks.FirebaseDynamicLinks;
 import com.google.firebase.dynamiclinks.PendingDynamicLinkData;
-import com.google.firebase.iid.FirebaseInstanceId;
 
 
 public class SplashActivity extends FragmentActivity {
     private FirebaseAnalytics mFirebaseAnalytics;
     private AdView mAdView;
-    private static final String ADMOB_APP_ID = "ca-app-pub-1668811522927993~1888119014";
-
 
     public static final String[] HOST_URL = {
-            "https://dokodemo.world/",
+            "https://550909.com?friend=1472045",
             "https://mintj.com/?mdc=991&afguid=tx0icnka6n4i20rfvwa3guaos",
-            "https://st-sub.dokodemo.world/",
-            "https://st-alt.dokodemo.world/",
+            "https://meru-para.com/?mdc=991&afguid=tlghvwiy7utr2idztdy46fg90",
+            "https://mobile.digicafe.jp/r/vAKDTV",
             "https://st-asap.dokodemo.world/",
             "https://st-design.dokodemo.world/ja/",
             "https://google.com/"
     };
 
     public static final String[] ITEMS = {
-            "ワクワク",
-            "Jメール",
-            "メルパラ",
-            "デジカフェ",
-            "PC-MAX",
-            "イククル",
-            "ASOBO"
+            "⭐️⭐⭐　ワクワクメール　⭐️⭐️⭐️",
+            "  　⭐️⭐️⭐　Jメール　⭐️⭐️⭐️",
+            "  　⭐️⭐⭐　メルパラ　⭐️⭐️⭐️",
+            " 　⭐️⭐️⭐　️デジカフェ　⭐⭐️⭐",
+            "  　⭐️⭐️⭐️　PC-MAX　⭐⭐️⭐",
+            "  　⭐️⭐️⭐️　イククル　⭐⭐️⭐",
+            "   　⭐️⭐️⭐　ASOBO　⭐⭐️⭐"
     };
 
     @Override
@@ -56,6 +57,7 @@ public class SplashActivity extends FragmentActivity {
         setContentView(R.layout.activity_splash);
         mFirebaseAnalytics = FirebaseAnalytics.getInstance(this);
         setChannel();
+        initView();
         initAds();
 
         // for debug
@@ -69,7 +71,7 @@ public class SplashActivity extends FragmentActivity {
 //            Log.i("FIREBASE", "[CALLBACK] Token = " + token);
 //        });
 
-        onDebugSelector();
+        onDomainSelector();
         getDynamicLinks();
 
         // load Admob
@@ -78,27 +80,42 @@ public class SplashActivity extends FragmentActivity {
         mAdView.loadAd(adRequest);
     }
 
-    public void onDebugSelector() {
-        String title = "Please Select Site";
-        DialogFragmentHelper.listDialog(getSupportFragmentManager(), title, ITEMS, new DialogResultListener<Integer>() {
-            @Override
-            public void onDataResult(Integer result) {
+    private void initView() {
+        TextView textView = (TextView)findViewById(R.id.titleText);
+        textView.setText(getString(R.string.splash_title));
+        textView.setTextColor(Color.parseColor("#003262"));
+        textView.setTextSize(27);
+        textView.setGravity(Gravity.CENTER_HORIZONTAL);
+        TextPaint paint = textView.getPaint();
+        paint.setFakeBoldText(true);
 
-                String loadUrl = HOST_URL[result];
-                Intent intent = new Intent(SplashActivity.this, MainActivity.class);
-                intent.putExtra("id", result);
-                intent.putExtra("url", loadUrl);
+        TextView textView1 = (TextView)findViewById(R.id.titleSubText);
+        textView1.setText(getString(R.string.splash_sub_title));
+        textView1.setTextColor(Color.parseColor("#003262"));
+        textView1.setTextSize(17);
+        textView1.setGravity(Gravity.CENTER_HORIZONTAL);
+        TextPaint paint1 = textView1.getPaint();
+        paint1.setFakeBoldText(true);
+    }
 
-                Bundle bundle = new Bundle();
-                bundle.putString(FirebaseAnalytics.Param.ITEM_ID, String.valueOf(result));
-                bundle.putString(FirebaseAnalytics.Param.ITEM_NAME, ITEMS[result]);
-                bundle.putString(FirebaseAnalytics.Param.CONTENT_TYPE, "url");
-                mFirebaseAnalytics.logEvent(FirebaseAnalytics.Event.SELECT_CONTENT, bundle);
+    public void onDomainSelector() {
+        String title = getString(R.string.splash_dialog_title);
+        DialogFragmentHelper.listDialog(getSupportFragmentManager(), title, ITEMS, result -> {
 
-                startActivity(intent);
-                finish();
+            String loadUrl = HOST_URL[result];
+            Intent intent = new Intent(SplashActivity.this, MainActivity.class);
+            intent.putExtra("id", result);
+            intent.putExtra("url", loadUrl);
 
-            }
+            Bundle bundle = new Bundle();
+            bundle.putString(FirebaseAnalytics.Param.ITEM_ID, String.valueOf(result));
+            bundle.putString(FirebaseAnalytics.Param.ITEM_NAME, ITEMS[result]);
+            bundle.putString(FirebaseAnalytics.Param.CONTENT_TYPE, "url");
+            mFirebaseAnalytics.logEvent(FirebaseAnalytics.Event.SELECT_CONTENT, bundle);
+
+            startActivity(intent);
+            finish();
+
         }, false);
     }
 
@@ -133,36 +150,28 @@ public class SplashActivity extends FragmentActivity {
     }
 
     private void initAds() {
-        MobileAds.initialize(this, ADMOB_APP_ID);
+        MobileAds.initialize(this, getString(R.string.ADMOB_APP_ID));
     }
 
     public void getDynamicLinks() {
         FirebaseDynamicLinks.getInstance()
                 .getDynamicLink(getIntent())
-                .addOnSuccessListener(this, new OnSuccessListener<PendingDynamicLinkData>() {
-                    @Override
-                    public void onSuccess(PendingDynamicLinkData pendingDynamicLinkData) {
-                        // Get deep link from result (may be null if no link is found)
-                        Uri deepLink = null;
-                        if (pendingDynamicLinkData != null) {
-                            deepLink = pendingDynamicLinkData.getLink();
-                            Log.i("DYNAMIC-LINKS", deepLink.toString());
-                        }
-
-
-                        // Handle the deep link. For example, open the linked
-                        // content, or apply promotional credit to the user's
-                        // account.
-                        // ...
-
-                        // ...
+                .addOnSuccessListener(this, pendingDynamicLinkData -> {
+                    // Get deep link from result (may be null if no link is found)
+                    Uri deepLink = null;
+                    if (pendingDynamicLinkData != null) {
+                        deepLink = pendingDynamicLinkData.getLink();
+                        Log.i("DYNAMIC-LINKS", deepLink.toString());
                     }
+
+
+                    // Handle the deep link. For example, open the linked
+                    // content, or apply promotional credit to the user's
+                    // account.
+                    // ...
+
+                    // ...
                 })
-                .addOnFailureListener(this, new OnFailureListener() {
-                    @Override
-                    public void onFailure(@NonNull Exception e) {
-                        Log.w("DYNAMIC-LINKS", "getDynamicLink:onFailure", e);
-                    }
-                });
+                .addOnFailureListener(this, e -> Log.w("DYNAMIC-LINKS", "getDynamicLink:onFailure", e));
     }
 }

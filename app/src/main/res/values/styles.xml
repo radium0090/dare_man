@@ -15,6 +15,7 @@
 
         <!-- set no title -->
         <item name="android:windowNoTitle">true</item>
+        <item name="android:gravity">center_horizontal</item>
 
         <!-- set title and body msg color -->
         <!--<item name="android:textColorPrimary">@color/black</item>-->

@@ -72,9 +72,6 @@ public class DialogFragmentUtils extends DialogFragment {
         super.onStart();
         Dialog dialog = getDialog();
         if (dialog != null) {
-            if (Build.VERSION.SDK_INT <= Build.VERSION_CODES.KITKAT) {
-                getDialog().getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
-            }
 
             Window window = getDialog().getWindow();
             WindowManager.LayoutParams windowParams = window.getAttributes();
