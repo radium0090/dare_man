@@ -7,28 +7,81 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
 import android.widget.Toast
+import com.google.android.gms.ads.AdListener
+import com.google.android.gms.ads.AdRequest
+import com.google.android.gms.ads.InterstitialAd
 
 
 class DashFragment: DMFragment() {
+    private lateinit var mInterstitialAd: InterstitialAd
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
         super.onCreateView(inflater, container, savedInstanceState)
-        return inflater.inflate(com.ls.dareman.R.layout.fragment_menu, container, false)
+
+        val v = inflater.inflate(com.ls.dareman.R.layout.fragment_menu, container, false)
+        initInterstitialAds()
+
+        return v
     }
 
-    override fun onStart() {
-        super.onStart()
+    override fun onActivityCreated(savedInstanceState: Bundle?) {
+        super.onActivityCreated(savedInstanceState)
 
         val buttonOne = activity!!.findViewById(com.ls.dareman.R.id.menu_one) as Button
         buttonOne.setOnClickListener {
             Toast.makeText(activity, "hoge!", Toast.LENGTH_SHORT).show()
             val intent = Intent(activity, SplashActivity::class.java)
             startActivity(intent)
+
+            if (mInterstitialAd.isLoaded) {
+                mInterstitialAd.show()
+            }
         }
 
         val buttonTwo = activity!!.findViewById(com.ls.dareman.R.id.menu_two) as Button
         buttonTwo.setOnClickListener {
             Toast.makeText(activity, "Contents preparing...", Toast.LENGTH_SHORT).show()
+
+            if (mInterstitialAd.isLoaded) {
+                mInterstitialAd.show()
+            }
         }
     }
+
+    private fun initInterstitialAds() {
+        mInterstitialAd = InterstitialAd(this.activity)
+        // debug
+//        mInterstitialAd.adUnitId = "ca-app-pub-3940256099942544/1033173712"
+        // prod
+        mInterstitialAd.adUnitId = getString(R.string.interstitial_ad_unit_id)
+        mInterstitialAd.loadAd(AdRequest.Builder().build())
+
+        mInterstitialAd.adListener = object: AdListener() {
+            override fun onAdLoaded() {
+                // Code to be executed when an ad finishes loading.
+            }
+
+            override fun onAdFailedToLoad(errorCode: Int) {
+                // Code to be executed when an ad request fails.
+            }
+
+            override fun onAdOpened() {
+                // Code to be executed when the ad is displayed.
+            }
+
+            override fun onAdClicked() {
+                // Code to be executed when the user clicks on an ad.
+            }
+
+            override fun onAdLeftApplication() {
+                // Code to be executed when the user has left the app.
+            }
+
+            override fun onAdClosed() {
+                // Code to be executed when the interstitial ad is closed.
+                mInterstitialAd.loadAd(AdRequest.Builder().build())
+            }
+        }
+    }
+
 }
