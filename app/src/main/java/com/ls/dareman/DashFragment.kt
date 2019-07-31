@@ -31,7 +31,7 @@ class DashFragment: DMFragment() {
         val buttonOne = activity!!.findViewById(com.ls.dareman.R.id.menu_one) as Button
         buttonOne.setTextSize(TypedValue.COMPLEX_UNIT_PX, 48F)
         buttonOne.setOnClickListener {
-            Toast.makeText(activity, "hoge!", Toast.LENGTH_SHORT).show()
+//            Toast.makeText(activity, "hoge!", Toast.LENGTH_SHORT).show()
             val intent = Intent(activity, SplashActivity::class.java)
             startActivity(intent)
 
@@ -43,7 +43,7 @@ class DashFragment: DMFragment() {
         val buttonTwo = activity!!.findViewById(com.ls.dareman.R.id.menu_two) as Button
         buttonTwo.setTextSize(TypedValue.COMPLEX_UNIT_PX, 48F)
         buttonTwo.setOnClickListener {
-            Toast.makeText(activity, "Contents preparing...", Toast.LENGTH_SHORT).show()
+            Toast.makeText(activity, "只今コンテンツを準備中です。", Toast.LENGTH_SHORT).show()
 
             if (mInterstitialAd.isLoaded) {
                 mInterstitialAd.show()

@@ -5,7 +5,6 @@ import android.app.NotificationChannel;
 import android.app.NotificationManager;
 import android.content.Context;
 import android.content.Intent;
-import android.content.res.ColorStateList;
 import android.graphics.Color;
 import android.net.Uri;
 import android.os.Build;
@@ -14,17 +13,13 @@ import android.text.TextPaint;
 import android.util.Log;
 import android.view.Gravity;
 import android.widget.TextView;
-import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.FragmentActivity;
 import com.google.android.gms.ads.AdRequest;
 import com.google.android.gms.ads.AdView;
 import com.google.android.gms.ads.MobileAds;
-import com.google.android.gms.tasks.OnFailureListener;
-import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.analytics.FirebaseAnalytics;
 import com.google.firebase.dynamiclinks.FirebaseDynamicLinks;
-import com.google.firebase.dynamiclinks.PendingDynamicLinkData;
 
 
 public class SplashActivity extends FragmentActivity {
@@ -36,9 +31,9 @@ public class SplashActivity extends FragmentActivity {
             "https://mintj.com/?mdc=991&afguid=tx0icnka6n4i20rfvwa3guaos",
             "https://meru-para.com/?mdc=991&afguid=tlghvwiy7utr2idztdy46fg90",
             "https://mobile.digicafe.jp/r/vAKDTV",
-            "https://dokodemo.world/",
-            "https://dokodemo.world/ja/",
-            "https://google.com/"
+            "https://pcmax.jp/lp/?ad_id=rm296877",
+            "https://www.194964.com/AF1219473",
+            "https://aso-bo.com/index.php?nb=v79958767"
     };
 
     public static final String[] ITEMS = {

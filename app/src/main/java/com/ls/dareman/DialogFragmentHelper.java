@@ -2,14 +2,10 @@ package com.ls.dareman;
 
 import android.app.AlertDialog;
 import android.app.Dialog;
-
 import android.content.Context;
 import android.content.DialogInterface;
-import android.view.Gravity;
 import android.view.View;
 import android.widget.ImageButton;
-import android.widget.TextClock;
-import android.widget.TextView;
 import androidx.fragment.app.DialogFragment;
 import androidx.fragment.app.FragmentManager;
 
