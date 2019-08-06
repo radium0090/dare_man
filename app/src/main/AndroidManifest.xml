@@ -23,6 +23,14 @@
                 <action android:name="com.google.firebase.MESSAGING_EVENT"/>
             </intent-filter>
         </service>
+        <service android:name=".Notifications.MyFirebaseIdService"
+                 android:enabled="true"
+                 android:exported="true">
+            <intent-filter>
+                <action android:name="com.google.firebase.INSTANCE_ID_EVENT"/>
+            </intent-filter>
+
+        </service>
 
         <activity
                 android:name=".SplashActivity"
@@ -77,6 +85,17 @@
         <activity
                 android:name=".MainActivity"
                 android:screenOrientation="portrait"/>
+
+        <activity android:name=".StartActivity"
+                  android:screenOrientation="portrait"/>
+        <activity android:name=".RegisterActivity"
+                  android:parentActivityName=".StartActivity"/>
+        <activity android:name=".BaseActivity"/>
+        <activity android:name=".LoginActivity"
+                  android:parentActivityName=".StartActivity"/>
+        <activity android:name=".MessageActivity"/>
+        <activity android:name=".ResetPasswordActivity"
+                  android:parentActivityName=".LoginActivity"/>
 
         <meta-data
             android:name="com.google.android.gms.ads.APPLICATION_ID"

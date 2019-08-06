@@ -21,4 +21,7 @@
     <string name="ADMOB_APP_ID">ca-app-pub-1668811522927993~1888119014</string>
     <string name="banner_ad_unit_id">ca-app-pub-1668811522927993/8970254881</string>
     <string name="interstitial_ad_unit_id">ca-app-pub-1668811522927993/7031089897</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>

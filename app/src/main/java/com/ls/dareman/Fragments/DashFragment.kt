@@ -13,6 +13,7 @@ import com.google.android.gms.ads.AdRequest
 import com.google.android.gms.ads.InterstitialAd
 import com.ls.dareman.R
 import com.ls.dareman.SplashActivity
+import com.ls.dareman.StartActivity
 
 
 class DashFragment: DMFragment() {
@@ -46,6 +47,9 @@ class DashFragment: DMFragment() {
         buttonTwo.setTextSize(TypedValue.COMPLEX_UNIT_PX, 48F)
         buttonTwo.setOnClickListener {
             Toast.makeText(activity, "只今コンテンツを準備中です。", Toast.LENGTH_SHORT).show()
+
+            val i = Intent(activity, StartActivity::class.java)
+            startActivity(i)
 
             if (mInterstitialAd.isLoaded) {
                 mInterstitialAd.show()
