@@ -1,4 +1,4 @@
-package com.ls.dareman;
+package com.ls.dareman.Utils;
 
 import android.app.Dialog;
 import android.content.Context;

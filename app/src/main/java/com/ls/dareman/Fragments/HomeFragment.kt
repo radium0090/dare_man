@@ -1,4 +1,4 @@
-package com.ls.dareman
+package com.ls.dareman.Fragments
 
 import android.annotation.SuppressLint
 import android.os.Bundle
@@ -9,6 +9,7 @@ import android.view.KeyEvent.KEYCODE_BACK
 import android.webkit.WebView
 import android.webkit.WebViewClient
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
+import com.ls.dareman.R
 
 
 class HomeFragment: DMFragment() {
@@ -17,7 +18,7 @@ class HomeFragment: DMFragment() {
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
         super.onCreateView(inflater, container, savedInstanceState)
-        val v = inflater.inflate(com.ls.dareman.R.layout.fragment_top, container, false)
+        val v = inflater.inflate(R.layout.fragment_top, container, false)
 
         setWebView(v)
         setRefresh(v)
@@ -26,7 +27,7 @@ class HomeFragment: DMFragment() {
     }
 
     private fun setWebView(v: View) {
-        mWebView = v.findViewById(com.ls.dareman.R.id.home_webview) as WebView
+        mWebView = v.findViewById(R.id.home_webview) as WebView
         mWebView.webViewClient = WebViewClient()
         setWebView(mWebView)
 
@@ -44,7 +45,7 @@ class HomeFragment: DMFragment() {
     }
 
     private fun setRefresh(v: View) {
-        mySwipeRefreshLayout = v.findViewById(com.ls.dareman.R.id.swipeContainer) as SwipeRefreshLayout
+        mySwipeRefreshLayout = v.findViewById(R.id.swipeContainer) as SwipeRefreshLayout
         mySwipeRefreshLayout.setOnRefreshListener {
             mWebView.reload()
             mySwipeRefreshLayout.isRefreshing = false

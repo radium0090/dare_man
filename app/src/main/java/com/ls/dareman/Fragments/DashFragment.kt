@@ -1,4 +1,4 @@
-package com.ls.dareman
+package com.ls.dareman.Fragments
 
 import android.content.Intent
 import android.os.Bundle
@@ -11,6 +11,8 @@ import android.widget.Toast
 import com.google.android.gms.ads.AdListener
 import com.google.android.gms.ads.AdRequest
 import com.google.android.gms.ads.InterstitialAd
+import com.ls.dareman.R
+import com.ls.dareman.SplashActivity
 
 
 class DashFragment: DMFragment() {
@@ -19,7 +21,7 @@ class DashFragment: DMFragment() {
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
         super.onCreateView(inflater, container, savedInstanceState)
 
-        val v = inflater.inflate(com.ls.dareman.R.layout.fragment_menu, container, false)
+        val v = inflater.inflate(R.layout.fragment_menu, container, false)
         initInterstitialAds()
 
         return v
@@ -28,7 +30,7 @@ class DashFragment: DMFragment() {
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
 
-        val buttonOne = activity!!.findViewById(com.ls.dareman.R.id.menu_one) as Button
+        val buttonOne = activity!!.findViewById(R.id.menu_one) as Button
         buttonOne.setTextSize(TypedValue.COMPLEX_UNIT_PX, 48F)
         buttonOne.setOnClickListener {
 //            Toast.makeText(activity, "hoge!", Toast.LENGTH_SHORT).show()
@@ -40,7 +42,7 @@ class DashFragment: DMFragment() {
             }
         }
 
-        val buttonTwo = activity!!.findViewById(com.ls.dareman.R.id.menu_two) as Button
+        val buttonTwo = activity!!.findViewById(R.id.menu_two) as Button
         buttonTwo.setTextSize(TypedValue.COMPLEX_UNIT_PX, 48F)
         buttonTwo.setOnClickListener {
             Toast.makeText(activity, "只今コンテンツを準備中です。", Toast.LENGTH_SHORT).show()
@@ -106,7 +108,7 @@ class DashFragment: DMFragment() {
         // debug
 //        mInterstitialAd.adUnitId = "ca-app-pub-3940256099942544/1033173712"
         // prod
-        mInterstitialAd.adUnitId = getString(com.ls.dareman.R.string.interstitial_ad_unit_id)
+        mInterstitialAd.adUnitId = getString(R.string.interstitial_ad_unit_id)
         mInterstitialAd.loadAd(AdRequest.Builder().build())
 
         mInterstitialAd.adListener = object: AdListener() {

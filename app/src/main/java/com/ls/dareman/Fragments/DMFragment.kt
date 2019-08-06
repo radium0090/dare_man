@@ -1,4 +1,4 @@
-package com.ls.dareman
+package com.ls.dareman.Fragments
 
 import android.annotation.SuppressLint
 import android.webkit.WebSettings

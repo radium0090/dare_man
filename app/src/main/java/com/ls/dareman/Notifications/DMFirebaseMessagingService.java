@@ -1,4 +1,4 @@
-package com.ls.dareman;
+package com.ls.dareman.Notifications;
 
 import android.util.Log;
 import com.google.firebase.messaging.FirebaseMessagingService;

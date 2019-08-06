@@ -20,6 +20,7 @@ import com.google.android.gms.ads.AdView;
 import com.google.android.gms.ads.MobileAds;
 import com.google.firebase.analytics.FirebaseAnalytics;
 import com.google.firebase.dynamiclinks.FirebaseDynamicLinks;
+import com.ls.dareman.Utils.DialogFragmentHelper;
 
 
 public class SplashActivity extends FragmentActivity {

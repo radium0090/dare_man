@@ -7,6 +7,8 @@ import com.google.android.gms.ads.AdRequest
 import com.google.android.gms.ads.AdView
 import com.google.android.gms.ads.InterstitialAd
 import com.google.android.material.bottomnavigation.BottomNavigationView
+import com.ls.dareman.Fragments.DashFragment
+import com.ls.dareman.Fragments.HomeFragment
 
 class MainActivity : FragmentActivity() {
     private lateinit var mInterstitialAd: InterstitialAd

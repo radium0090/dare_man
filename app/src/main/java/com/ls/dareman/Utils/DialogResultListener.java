@@ -1,4 +1,4 @@
-package com.ls.dareman;
+package com.ls.dareman.Utils;
 
 public interface DialogResultListener<T> {
     /**
