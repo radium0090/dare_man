@@ -3,6 +3,7 @@ package com.ls.dareman.Fragments;
 import android.Manifest;
 import android.app.ProgressDialog;
 import android.content.ContentResolver;
+import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.net.Uri;
@@ -48,7 +49,7 @@ public class ProfileFragment extends Fragment {
     private static final int IMAGE_REQUEST = 1;
     private Uri imageUri;
     private StorageTask uploadTask;
-
+    private Context mContext;
 
     @Override
     public View onCreateView(@NotNull LayoutInflater inflater, ViewGroup container,
@@ -72,7 +73,7 @@ public class ProfileFragment extends Fragment {
                 if (user.getImageURL().equals("default")){
                     image_profile.setImageResource(R.mipmap.ic_launcher);
                 } else {
-                    Glide.with(getContext()).load(user.getImageURL()).into(image_profile);
+                    Glide.with(mContext).load(user.getImageURL()).into(image_profile);
                 }
             }
 
@@ -165,5 +166,12 @@ public class ProfileFragment extends Fragment {
                 uploadImage();
             }
         }
+    }
+
+    // Initialise it from onAttach()
+    @Override
+    public void onAttach(Context context) {
+        super.onAttach(context);
+        mContext = context;
     }
 }

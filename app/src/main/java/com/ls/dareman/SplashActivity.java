@@ -52,7 +52,7 @@ public class SplashActivity extends FragmentActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_splash);
         mFirebaseAnalytics = FirebaseAnalytics.getInstance(this);
-        setChannel();
+//        setChannel();
         initView();
         initAds();
 
@@ -115,35 +115,27 @@ public class SplashActivity extends FragmentActivity {
         }, false);
     }
 
-    private void setChannel() {
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-            NotificationManager manager = (NotificationManager)getSystemService(Context.NOTIFICATION_SERVICE);
-
-            NotificationChannel channel = new NotificationChannel(
-                    // 一意のチャンネルID
-                    // ここはどこかで定数にしておくのが良さそう
-                    "dm_push",
-
-                    // 設定に表示されるチャンネル名
-                    // ここは実際にはリソースを指定するのが良さそう
-                    "DMからのプッシュ通知",
-
-                    // チャンネルの重要度
-                    // 重要度によって表示箇所が異なる
-                    NotificationManager.IMPORTANCE_DEFAULT
-            );
-
-            // 通知時にライトを有効にする
-            channel.enableLights(true);
-            // 通知時のライトの色
-            channel.setLightColor(Color.WHITE);
-            // ロック画面での表示レベル
-            channel.setLockscreenVisibility(Notification.VISIBILITY_PUBLIC);
-
-            // チャンネルの登録
-            manager.createNotificationChannel(channel);
-        }
-    }
+//    private void setChannel() {
+//        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+//            NotificationManager manager = (NotificationManager)getSystemService(Context.NOTIFICATION_SERVICE);
+//
+//            NotificationChannel channel = new NotificationChannel(
+//                    "dm_push",
+//                    "DMからのプッシュ通知",
+//                    NotificationManager.IMPORTANCE_DEFAULT
+//            );
+//
+//            // 通知時にライトを有効にする
+//            channel.enableLights(true);
+//            // 通知時のライトの色
+//            channel.setLightColor(Color.WHITE);
+//            // ロック画面での表示レベル
+//            channel.setLockscreenVisibility(Notification.VISIBILITY_PUBLIC);
+//
+//            // チャンネルの登録
+//            manager.createNotificationChannel(channel);
+//        }
+//    }
 
     private void initAds() {
         MobileAds.initialize(this, getString(R.string.ADMOB_APP_ID));
