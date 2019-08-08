@@ -4,8 +4,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.view.View;
-import android.widget.Button;
-import android.widget.Toast;
+import android.widget.*;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
@@ -22,11 +21,14 @@ import com.rengwuxian.materialedittext.MaterialEditText;
 import java.util.HashMap;
 
 public class RegisterActivity extends AppCompatActivity {
-    MaterialEditText username, email, password;
+    MaterialEditText username, email, password, comment;
     Button btn_register;
-
+    Spinner spinner;
     FirebaseAuth auth;
     DatabaseReference reference;
+
+    private String spinnerItems[] = {"Select", "Male", "Female"};
+    private String selectedGender = null;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -42,6 +44,36 @@ public class RegisterActivity extends AppCompatActivity {
         email = findViewById(R.id.email);
         password = findViewById(R.id.password);
         btn_register = findViewById(R.id.btn_register);
+        spinner = findViewById(R.id.selectSex);
+        comment = findViewById(R.id.comment);
+
+        // ArrayAdapter
+        ArrayAdapter<String> adapter
+                = new ArrayAdapter<>(this,
+                android.R.layout.simple_spinner_item, spinnerItems);
+
+        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+
+        // spinner に adapter をセット
+        spinner.setAdapter(adapter);
+
+        // リスナーを登録
+        spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            //　アイテムが選択された時
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                Spinner spinner = (Spinner)parent;
+                String item = (String)spinner.getSelectedItem();
+                selectedGender = item;
+                Toast.makeText(RegisterActivity.this, "gender >>>>>>>>>> : " + selectedGender, Toast.LENGTH_SHORT).show();
+//                textView.setText(item);
+            }
+
+            //　アイテムが選択されなかった
+            public void onNothingSelected(AdapterView<?> parent) {
+                //
+            }
+        });
 
         auth = FirebaseAuth.getInstance();
 
@@ -49,8 +81,9 @@ public class RegisterActivity extends AppCompatActivity {
             String txt_username = username.getText().toString();
             String txt_email = email.getText().toString();
             String txt_password = password.getText().toString();
+            String txt_comment = comment.getText().toString();
 
-            if (TextUtils.isEmpty(txt_username) || TextUtils.isEmpty(txt_email) || TextUtils.isEmpty(txt_password)){
+            if (TextUtils.isEmpty(txt_username) || TextUtils.isEmpty(txt_email) || TextUtils.isEmpty(txt_password) || TextUtils.isEmpty(txt_comment)){
                 Toast.makeText(RegisterActivity.this, "All fileds are required", Toast.LENGTH_SHORT).show();
             } else if (txt_password.length() < 6 ){
                 Toast.makeText(RegisterActivity.this, "password must be at least 6 characters", Toast.LENGTH_SHORT).show();
@@ -87,7 +120,7 @@ public class RegisterActivity extends AppCompatActivity {
                             }
                         });
                     } else {
-                        Toast.makeText(RegisterActivity.this, "You can't register woth this email or password", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(RegisterActivity.this, "You can't register with this email or password", Toast.LENGTH_SHORT).show();
                     }
                 });
     }

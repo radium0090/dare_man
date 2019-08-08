@@ -33,6 +33,19 @@
                 app:met_floatingLabel="normal"
                 android:hint="Username"/>
 
+        <TextView
+                android:id="@+id/sexDisp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="16sp"
+                android:text="Select gender"/>
+
+        <Spinner
+                android:id="@+id/selectSex"
+                android:layout_width="150dp"
+                android:layout_height="45dp"
+                android:spinnerMode="dropdown"/>
+
         <com.rengwuxian.materialedittext.MaterialEditText
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -50,6 +63,14 @@
                 android:layout_marginTop="10dp"
                 app:met_floatingLabel="normal"
                 android:hint="Password"/>
+
+        <com.rengwuxian.materialedittext.MaterialEditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/comment"
+                android:layout_marginTop="10dp"
+                app:met_floatingLabel="normal"
+                android:hint="Comment"/>
 
         <Button
                 android:layout_width="match_parent"
