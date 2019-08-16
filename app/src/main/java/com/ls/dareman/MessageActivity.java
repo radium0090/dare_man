@@ -3,7 +3,6 @@ package com.ls.dareman;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
-import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.TextView;
@@ -94,7 +93,7 @@ public class MessageActivity extends AppCompatActivity {
             if (!msg.equals("")){
                 sendMessage(fuser.getUid(), userid, msg);
             } else {
-                Toast.makeText(MessageActivity.this, "You can't send empty message", Toast.LENGTH_SHORT).show();
+                Toast.makeText(MessageActivity.this, "空メッセージは送信できません。", Toast.LENGTH_SHORT).show();
             }
             text_send.setText("");
         });
@@ -224,7 +223,7 @@ public class MessageActivity extends AppCompatActivity {
                                 public void onResponse(Call<MyResponse> call, Response<MyResponse> response) {
                                     if (response.code() == 200){
                                         if (response.body().success != 1){
-                                            Toast.makeText(MessageActivity.this, "Failed!", Toast.LENGTH_SHORT).show();
+                                            Toast.makeText(MessageActivity.this, "送信失敗しました。", Toast.LENGTH_SHORT).show();
                                         }
                                     }
                                 }

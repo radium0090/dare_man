@@ -9,7 +9,7 @@
     <string name="splash_dialog_title">サイトを選択してください：</string>
 
     <string name="menu_one">サイト選択へ戻る</string>
-    <string name="menu_two">只今準備中。。。</string>
+    <string name="menu_two">チャットチャンネル</string>
     <string name="menu_three">只今準備中。。。</string>
     <string name="menu_four">只今準備中。。。</string>
     <string name="menu_five">只今準備中。。。</string>
@@ -24,4 +24,23 @@
 
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+
+    <string name="login_title">ログイン</string>
+    <string name="login_btn">ログイン</string>
+    <string name="forget_password">パスワードを忘れた方</string>
+
+    <string name="type_msg">メッセージを入力してください</string>
+
+    <string name="create_account_title">新規登録</string>
+    <string name="username">ニックネーム</string>
+    <string name="gender_select">性別</string>
+    <string name="comment">ひとこと</string>
+    <string name="register_btn">登録</string>
+
+    <string name="reset_btn">再設定する</string>
+    <string name="forget_disp">パスワード再設定のEmailが届きます。Email内の説明に参照して、パスワードを再設定してください。</string>
+    <string name="chat_title">デアマン・チャット</string>
+
+    <string name="profile">プロフィール</string>
+
 </resources>

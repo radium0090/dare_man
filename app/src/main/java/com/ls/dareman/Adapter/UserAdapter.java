@@ -46,6 +46,14 @@ public class UserAdapter extends RecyclerView.Adapter<UserAdapter.ViewHolder> {
 
         final User user = mUsers.get(position);
         holder.username.setText(user.getUsername());
+        String genderStr = user.getGender();
+        if (genderStr != null) {
+            if (genderStr.equals("male")) {
+                holder.genderImg.setImageResource(R.drawable.gender_male);
+            } else if (genderStr.equals("female")) {
+                holder.genderImg.setImageResource(R.drawable.gender_female);
+            }
+        }
         if (user.getImageURL().equals("default")){
             holder.profile_image.setImageResource(R.mipmap.ic_launcher);
         } else {
@@ -87,6 +95,7 @@ public class UserAdapter extends RecyclerView.Adapter<UserAdapter.ViewHolder> {
 
         public TextView username;
         public ImageView profile_image;
+        public ImageView genderImg;
         private ImageView img_on;
         private ImageView img_off;
         private TextView last_msg;
@@ -96,6 +105,7 @@ public class UserAdapter extends RecyclerView.Adapter<UserAdapter.ViewHolder> {
 
             username = itemView.findViewById(R.id.username);
             profile_image = itemView.findViewById(R.id.profile_image);
+            genderImg = itemView.findViewById(R.id.genderImg);
             img_on = itemView.findViewById(R.id.img_on);
             img_off = itemView.findViewById(R.id.img_off);
             last_msg = itemView.findViewById(R.id.last_msg);

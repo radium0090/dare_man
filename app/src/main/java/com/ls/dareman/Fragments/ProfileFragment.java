@@ -1,6 +1,7 @@
 package com.ls.dareman.Fragments;
 
 import android.Manifest;
+import android.app.Activity;
 import android.app.ProgressDialog;
 import android.content.ContentResolver;
 import android.content.Context;
@@ -12,6 +13,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.webkit.MimeTypeMap;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 import androidx.annotation.NonNull;
@@ -20,7 +22,6 @@ import androidx.fragment.app.Fragment;
 import com.bumptech.glide.Glide;
 import com.google.android.gms.tasks.Continuation;
 import com.google.android.gms.tasks.OnCompleteListener;
-import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
@@ -41,6 +42,8 @@ import static android.app.Activity.RESULT_OK;
 public class ProfileFragment extends Fragment {
     CircleImageView image_profile;
     TextView username;
+    ImageView gender;
+    TextView comment;
 
     DatabaseReference reference;
     FirebaseUser fuser;
@@ -60,6 +63,9 @@ public class ProfileFragment extends Fragment {
         image_profile = view.findViewById(R.id.profile_image);
         username = view.findViewById(R.id.username);
 
+        gender = view.findViewById(R.id.genderIcon);
+        comment = view.findViewById(R.id.comment);
+
         storageReference = FirebaseStorage.getInstance().getReference("uploads");
 
         fuser = FirebaseAuth.getInstance().getCurrentUser();
@@ -70,10 +76,19 @@ public class ProfileFragment extends Fragment {
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 User user = dataSnapshot.getValue(User.class);
                 username.setText(user.getUsername());
+                comment.setText(user.getComment());
+                String sexStr = user.getGender();
+                if (sexStr.equals("male")) {
+                    gender.setImageResource(R.drawable.gender_male);
+                } else if (sexStr.equals("female")) {
+                    gender.setImageResource(R.drawable.gender_female);
+                }
                 if (user.getImageURL().equals("default")){
                     image_profile.setImageResource(R.mipmap.ic_launcher);
                 } else {
-                    Glide.with(mContext).load(user.getImageURL()).into(image_profile);
+                    if (!isDestroy((Activity)mContext)) {
+                        Glide.with(mContext).load(user.getImageURL()).into(image_profile);
+                    }
                 }
             }
 
@@ -140,7 +155,7 @@ public class ProfileFragment extends Fragment {
 
                     pd.dismiss();
                 } else {
-                    Toast.makeText(getContext(), "Failed!", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getContext(), "アップロード失敗", Toast.LENGTH_SHORT).show();
                     pd.dismiss();
                 }
             }).addOnFailureListener(e -> {
@@ -161,7 +176,7 @@ public class ProfileFragment extends Fragment {
             imageUri = data.getData();
 
             if (uploadTask != null && uploadTask.isInProgress()){
-                Toast.makeText(getContext(), "Upload in preogress", Toast.LENGTH_SHORT).show();
+                Toast.makeText(getContext(), "アップロードしています", Toast.LENGTH_LONG).show();
             } else {
                 uploadImage();
             }
@@ -174,4 +189,13 @@ public class ProfileFragment extends Fragment {
         super.onAttach(context);
         mContext = context;
     }
+
+    private static boolean isDestroy(Activity activity) {
+        if (activity == null || activity.isFinishing() || activity.isDestroyed()) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
 }

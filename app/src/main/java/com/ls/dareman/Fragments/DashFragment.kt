@@ -7,7 +7,6 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
-import android.widget.Toast
 import com.google.android.gms.ads.AdListener
 import com.google.android.gms.ads.AdRequest
 import com.google.android.gms.ads.InterstitialAd
@@ -46,7 +45,7 @@ class DashFragment: DMFragment() {
         val buttonTwo = activity!!.findViewById(R.id.menu_two) as Button
         buttonTwo.setTextSize(TypedValue.COMPLEX_UNIT_PX, 48F)
         buttonTwo.setOnClickListener {
-            Toast.makeText(activity, "只今コンテンツを準備中です。", Toast.LENGTH_SHORT).show()
+//            Toast.makeText(activity, "只今コンテンツを準備中です。", Toast.LENGTH_SHORT).show()
 
             val i = Intent(activity, StartActivity::class.java)
             startActivity(i)

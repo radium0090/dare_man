@@ -1,5 +1,6 @@
 package com.ls.dareman;
 
+import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.text.TextUtils;
@@ -26,9 +27,10 @@ public class RegisterActivity extends AppCompatActivity {
     Spinner spinner;
     FirebaseAuth auth;
     DatabaseReference reference;
+    ProgressDialog progress;
 
-    private String spinnerItems[] = {"Select", "Male", "Female"};
-    private String selectedGender = null;
+    private String spinnerItems[] = {"", "男性", "女性"};
+    private String selectedGender = "";
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -37,7 +39,7 @@ public class RegisterActivity extends AppCompatActivity {
 
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-        getSupportActionBar().setTitle("Register");
+        getSupportActionBar().setTitle(getString(R.string.create_account_title));
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         username = findViewById(R.id.username);
@@ -46,6 +48,8 @@ public class RegisterActivity extends AppCompatActivity {
         btn_register = findViewById(R.id.btn_register);
         spinner = findViewById(R.id.selectSex);
         comment = findViewById(R.id.comment);
+
+        progress = new ProgressDialog(this);
 
         // ArrayAdapter
         ArrayAdapter<String> adapter
@@ -65,13 +69,14 @@ public class RegisterActivity extends AppCompatActivity {
                 Spinner spinner = (Spinner)parent;
                 String item = (String)spinner.getSelectedItem();
                 selectedGender = item;
-                Toast.makeText(RegisterActivity.this, "gender >>>>>>>>>> : " + selectedGender, Toast.LENGTH_SHORT).show();
+//                Toast.makeText(RegisterActivity.this, "selected gender : " + selectedGender, Toast.LENGTH_SHORT).show();
 //                textView.setText(item);
             }
 
             //　アイテムが選択されなかった
             public void onNothingSelected(AdapterView<?> parent) {
                 //
+                selectedGender = "";
             }
         });
 
@@ -83,36 +88,50 @@ public class RegisterActivity extends AppCompatActivity {
             String txt_password = password.getText().toString();
             String txt_comment = comment.getText().toString();
 
-            if (TextUtils.isEmpty(txt_username) || TextUtils.isEmpty(txt_email) || TextUtils.isEmpty(txt_password) || TextUtils.isEmpty(txt_comment)){
-                Toast.makeText(RegisterActivity.this, "All fileds are required", Toast.LENGTH_SHORT).show();
+            if (TextUtils.isEmpty(txt_username)
+                    || TextUtils.isEmpty(txt_email)
+                    || TextUtils.isEmpty(txt_password)
+                    || TextUtils.isEmpty(txt_comment)
+                    || TextUtils.isEmpty(selectedGender)) {
+                Toast.makeText(RegisterActivity.this, "全枠入力必須です", Toast.LENGTH_SHORT).show();
             } else if (txt_password.length() < 6 ){
-                Toast.makeText(RegisterActivity.this, "password must be at least 6 characters", Toast.LENGTH_SHORT).show();
+                Toast.makeText(RegisterActivity.this, "パスワードは６文字以上が必須です", Toast.LENGTH_SHORT).show();
             } else {
-                register(txt_username, txt_email, txt_password);
+                register(txt_username, txt_email, txt_password, txt_comment, selectedGender);
+                showLoading(progress);
             }
         });
     }
 
-    private void register(final String username, String email, String password){
+    private void register(final String username, String email, String password, String comment, String gender){
 
         auth.createUserWithEmailAndPassword(email, password)
                 .addOnCompleteListener(task -> {
-                    if (task.isSuccessful()){
+                    if (task.isSuccessful()) {
                         FirebaseUser firebaseUser = auth.getCurrentUser();
                         assert firebaseUser != null;
-                        String userid = firebaseUser.getUid();
+                        String userId = firebaseUser.getUid();
 
-                        reference = FirebaseDatabase.getInstance().getReference("Users").child(userid);
+                        reference = FirebaseDatabase.getInstance().getReference("Users").child(userId);
 
                         HashMap<String, String> hashMap = new HashMap<>();
-                        hashMap.put("id", userid);
+                        hashMap.put("id", userId);
                         hashMap.put("username", username);
                         hashMap.put("imageURL", "default");
                         hashMap.put("status", "offline");
                         hashMap.put("search", username.toLowerCase());
+//                        hashMap.put("gender", gender.toLowerCase());
+                        hashMap.put("comment", comment);
+
+                        if (gender.equals("男性")) {
+                            hashMap.put("gender", "male");
+                        } else {
+                            hashMap.put("gender", "female");
+                        }
 
                         reference.setValue(hashMap).addOnCompleteListener(task1 -> {
-                            if (task1.isSuccessful()){
+                            if (task1.isSuccessful()) {
+                                dismissLoading(progress);
                                 Intent intent = new Intent(RegisterActivity.this, BaseActivity.class);
                                 intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
                                 startActivity(intent);
@@ -120,8 +139,20 @@ public class RegisterActivity extends AppCompatActivity {
                             }
                         });
                     } else {
-                        Toast.makeText(RegisterActivity.this, "You can't register with this email or password", Toast.LENGTH_SHORT).show();
+                        dismissLoading(progress);
+                        Toast.makeText(RegisterActivity.this, "入力したEmailはすでに存在してます。", Toast.LENGTH_SHORT).show();
                     }
                 });
+    }
+
+    private void showLoading(ProgressDialog progress) {
+        progress.setTitle("Loading");
+        progress.setMessage("登録中、しばらくお待ちください。");
+        progress.setCancelable(false);
+        progress.show();
+    }
+
+    private void dismissLoading(ProgressDialog progress) {
+        progress.dismiss();
     }
 }

@@ -3,16 +3,11 @@ package com.ls.dareman;
 import android.content.Intent;
 import android.os.Bundle;
 import android.text.TextUtils;
-import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
-import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
-import com.google.android.gms.tasks.OnCompleteListener;
-import com.google.android.gms.tasks.Task;
-import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.rengwuxian.materialedittext.MaterialEditText;
 
@@ -30,7 +25,7 @@ public class LoginActivity extends AppCompatActivity {
 
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-        getSupportActionBar().setTitle("Login");
+        getSupportActionBar().setTitle(getString(R.string.login_title));
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         auth = FirebaseAuth.getInstance();
@@ -47,7 +42,7 @@ public class LoginActivity extends AppCompatActivity {
             String txt_password = password.getText().toString();
 
             if (TextUtils.isEmpty(txt_email) || TextUtils.isEmpty(txt_password)){
-                Toast.makeText(LoginActivity.this, "All fileds are required", Toast.LENGTH_SHORT).show();
+                Toast.makeText(LoginActivity.this, "入力情報に間違いがありました、もう一度ご確認してください。", Toast.LENGTH_SHORT).show();
             } else {
 
                 auth.signInWithEmailAndPassword(txt_email, txt_password)
@@ -58,7 +53,7 @@ public class LoginActivity extends AppCompatActivity {
                                 startActivity(intent);
                                 finish();
                             } else {
-                                Toast.makeText(LoginActivity.this, "Authentication failed!", Toast.LENGTH_SHORT).show();
+                                Toast.makeText(LoginActivity.this, "認証失敗しました", Toast.LENGTH_SHORT).show();
                             }
                         });
             }

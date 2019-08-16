@@ -27,7 +27,7 @@ public class ResetPasswordActivity extends AppCompatActivity {
 
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-        getSupportActionBar().setTitle("Reset Password");
+        getSupportActionBar().setTitle("パスワード再設定");
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         send_email = findViewById(R.id.send_email);
@@ -39,11 +39,11 @@ public class ResetPasswordActivity extends AppCompatActivity {
             String email = send_email.getText().toString();
 
             if (email.equals("")){
-                Toast.makeText(ResetPasswordActivity.this, "All fileds are required!", Toast.LENGTH_SHORT).show();
+                Toast.makeText(ResetPasswordActivity.this, "全枠入力必須です", Toast.LENGTH_SHORT).show();
             } else {
                 firebaseAuth.sendPasswordResetEmail(email).addOnCompleteListener(task -> {
                     if (task.isSuccessful()){
-                        Toast.makeText(ResetPasswordActivity.this, "Please check you Email", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(ResetPasswordActivity.this, "Emailにて確認してください。", Toast.LENGTH_SHORT).show();
                         startActivity(new Intent(ResetPasswordActivity.this, LoginActivity.class));
                     } else {
                         String error = task.getException().getMessage();

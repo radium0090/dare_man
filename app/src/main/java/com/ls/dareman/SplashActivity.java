@@ -38,13 +38,13 @@ public class SplashActivity extends FragmentActivity {
     };
 
     public static final String[] ITEMS = {
-            "⭐️⭐⭐　ワクワクメール　⭐️⭐️⭐️",
-            "  　⭐️⭐️⭐　Jメール　⭐️⭐️⭐️",
-            "  　⭐️⭐⭐　メルパラ　⭐️⭐️⭐️",
-            " 　⭐️⭐️⭐　️デジカフェ　⭐⭐️⭐",
-            "  　⭐️⭐️⭐️　PC-MAX　⭐⭐️⭐",
-            "  　⭐️⭐️⭐️　イククル　⭐⭐️⭐",
-            "   　⭐️⭐️⭐　ASOBO　⭐⭐️⭐"
+            "  ⭐⭐　ワクワクメール️",
+            "  ⭐️️⭐　Jメール️",
+            "  ⭐️⭐　メルパラ️",
+            "  ⭐️️⭐　️デジカフェ",
+            "  ⭐️️⭐️　PC-MAX",
+            "  ⭐️️⭐️　イククル",
+            "  ⭐️️⭐　ASOBO"
     };
 
     @Override
